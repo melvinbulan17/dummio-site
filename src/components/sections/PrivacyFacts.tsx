@@ -1,4 +1,6 @@
-import { links, permissions } from "@/content/site";
+import Link from "next/link";
+
+import { permissions } from "@/content/site";
 
 export function PrivacyFacts() {
   return (
@@ -14,14 +16,12 @@ export function PrivacyFacts() {
           <p className="m-0 type-lead text-band-ink-muted">
             It makes no network requests, and it only touches a page when you
             click, press the shortcut or right-click.{" "}
-            <a
-              href={links.extensionPrivacy}
-              target="_blank"
-              rel="noopener"
+            <Link
+              href="/privacy#extension"
               className="text-dummy-yellow underline-offset-3"
             >
               Read its privacy policy
-            </a>
+            </Link>
           </p>
         </div>
         <ul className="m-0 flex min-w-0 list-none flex-col p-0">

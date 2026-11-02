@@ -11,7 +11,22 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
+const extensionPermissions = [
+  {
+    name: "activeTab",
+    reason:
+      "Fill the page you're on, only after you click, press or right-click",
+  },
+  { name: "scripting", reason: "Run the filler on that page when you ask" },
+  {
+    name: "contextMenus",
+    reason: 'Add "Fill this field" to the right-click menu',
+  },
+  { name: "storage", reason: "Save your settings and site presets" },
+];
+
 const headingStyles = "m-0 text-xl leading-7 font-semibold tracking-tight";
+const subheadingStyles = "m-0 mt-3 text-base leading-6 font-semibold";
 const linkStyles = "text-dummy-yellow-text underline-offset-3";
 
 export default function PrivacyPage() {
@@ -29,24 +44,79 @@ export default function PrivacyPage() {
           <p className="m-0 text-ink-muted">Last updated: 2 November 2026</p>
         </div>
 
-        <section className="flex flex-col gap-3">
+        <section id="extension" className="flex flex-col gap-3">
           <h2 className={headingStyles}>The Dummio extension</h2>
           <p className="m-0">
-            The extension collects nothing and makes no network requests. Its{" "}
-            <a
-              href={links.extensionPrivacy}
-              target="_blank"
-              rel="noopener"
-              className={linkStyles}
-            >
-              own privacy policy
-            </a>{" "}
-            explains what it stores on your device and why it needs each
-            permission.
+            Dummio fills web forms with made-up test data. It has no accounts,
+            analytics, tracking or server, and it makes no network requests, so
+            it collects nothing.
+          </p>
+
+          <h3 className={subheadingStyles}>What it stores</h3>
+          <ul className="m-0 flex list-disc flex-col gap-2 pl-5">
+            <li>
+              Settings (data locale, overwrite, password length and long text
+              style) are saved with your browser&apos;s sync storage. If you
+              sync your browser, it copies them between your own devices. Dummio
+              never sees or sends them anywhere else.
+            </li>
+            <li>
+              Site presets, the values you choose for a site, stay on this
+              device only.
+            </li>
+          </ul>
+          <p className="m-0">
+            You can delete presets on the settings page at any time. Removing
+            Dummio deletes everything it stored.
+          </p>
+
+          <h3 className={subheadingStyles}>What it reads on a page</h3>
+          <p className="m-0">
+            Dummio only touches a page when you click its button, press its
+            shortcut or choose &quot;Fill this field&quot;. It then reads the
+            page&apos;s form fields (labels, names and formats) to decide what
+            to fill, and writes made-up values into them. It doesn&apos;t read
+            or keep anything else on the page, and nothing it reads is stored or
+            sent.
+          </p>
+
+          <h3 className={subheadingStyles}>Permissions</h3>
+          <div className="overflow-x-auto rounded-lg border border-line bg-surface-0 px-4 py-2">
+            <table className="w-full border-collapse text-sm leading-5">
+              <thead>
+                <tr className="text-left text-xs leading-4 text-ink-muted">
+                  <th scope="col" className="py-2 pr-3 font-medium">
+                    Permission
+                  </th>
+                  <th scope="col" className="py-2 font-medium">
+                    Why it&apos;s needed
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {extensionPermissions.map((permission) => (
+                  <tr key={permission.name} className="border-t border-line">
+                    <td className="py-2 pr-3 align-baseline">
+                      <code className="font-mono text-[13px] leading-[18px]">
+                        {permission.name}
+                      </code>
+                    </td>
+                    <td className="py-2 align-baseline">{permission.reason}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className={subheadingStyles}>Links</h3>
+          <p className="m-0">
+            The extension links to GitHub, to report a problem, and to Ko-fi, to
+            support the project. These open in a new tab only when you click
+            them.
           </p>
         </section>
 
-        <section className="flex flex-col gap-3">
+        <section id="website" className="flex flex-col gap-3">
           <h2 className={headingStyles}>This website</h2>
           <p className="m-0">
             If you choose Allow, this website uses Google Analytics to show how
