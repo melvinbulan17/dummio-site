@@ -59,7 +59,7 @@ test("serves the search and sharing files", async ({ request }) => {
 
 test("has search and sharing tags", async ({ page }) => {
   await page.goto("/");
-  await expect(page).toHaveTitle(/realistic test data/);
+  await expect(page).toHaveTitle("Dummio | Test Data Generator");
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     "content",
     /Chrome and Firefox/,
