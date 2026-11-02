@@ -103,10 +103,12 @@ export function FillDemo() {
                 {isFilled ? (
                   person[index]
                 ) : (
-                  <span
-                    className="block h-2.5 rounded-sm bg-skeleton"
-                    style={{ width: field.barWidth }}
-                  />
+                  <span className="flex h-5 items-center">
+                    <span
+                      className="block h-2.5 rounded-sm bg-skeleton"
+                      style={{ width: field.barWidth }}
+                    />
+                  </span>
                 )}
               </dd>
             </div>

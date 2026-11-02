@@ -19,7 +19,7 @@ test("runs the fill demo and fills again with a new person", async ({
   await page.goto("/");
   await expect(page.getByText("Dela Cruz")).toBeVisible();
   await page.getByRole("button", { name: "Fill again" }).click();
-  await expect(page.getByText("Whitfield")).toBeVisible();
+  await expect(page.getByText("Whitfield", { exact: true })).toBeVisible();
 });
 
 test("never scrolls sideways", async ({ page }) => {
@@ -40,13 +40,62 @@ test("keeps the extension's privacy policy on the site", async ({ page }) => {
   await expect(page.locator('a[href*="PRIVACY.md"]')).toHaveCount(0);
 });
 
-test("the coffee link jumps to the support section", async ({ page }) => {
+test("a nav link scrolls to its section every time", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: "Buy me a coffee" }).first().click();
-  await expect(page).toHaveURL(/#support$/);
+  const howItWorks = page
+    .getByRole("navigation", { name: "Main" })
+    .getByRole("link", { name: "How it works" });
+
+  for (let click = 0; click < 2; click++) {
+    await howItWorks.click();
+    await expect(page).toHaveURL(/#how$/);
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          Math.abs(
+            Math.round(
+              document.getElementById("how")!.getBoundingClientRect().top,
+            ),
+          ),
+        ),
+      )
+      .toBeLessThan(5);
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeLessThan(5);
+  }
+});
+
+test("both coffee links go straight to Ko-fi in a new tab", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const coffeeLinks = page.getByRole("link", { name: "Buy me a coffee" });
+  await expect(coffeeLinks).toHaveCount(2);
+  for (const link of await coffeeLinks.all()) {
+    await expect(link).toHaveAttribute("href", "https://ko-fi.com/mbulandev");
+    await expect(link).toHaveAttribute("target", "_blank");
+  }
+});
+
+test("the nav has no install button", async ({ page }) => {
+  await page.goto("/");
   await expect(
-    page.getByRole("link", { name: "Buy me a coffee" }).last(),
-  ).toHaveAttribute("href", "https://ko-fi.com/mbulandev");
+    page
+      .getByRole("navigation", { name: "Main" })
+      .getByRole("link", { name: "Install" }),
+  ).toHaveCount(0);
+});
+
+test("nav links work from the privacy page", async ({ page }) => {
+  await page.goto("/privacy");
+  await page
+    .getByRole("navigation", { name: "Main" })
+    .getByRole("link", { name: "FAQ" })
+    .click();
+  await expect(page).toHaveURL(/\/#faq$/);
+  await expect(page.getByRole("heading", { name: "FAQ" })).toBeVisible();
 });
 
 test("makes no request to Google before a choice", async ({ page }) => {
