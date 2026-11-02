@@ -1,7 +1,7 @@
 const repo = "https://github.com/melvinbulan17/dummio";
 
 export const siteName = "Dummio";
-export const siteTitle = "Dummio: realistic test data for any web form";
+export const siteTitle = "Dummio | Test Data Generator";
 export const siteDescription =
   "A free Chrome and Firefox extension for QA testers and web developers. Fill any form with realistic fake data in one click, with Philippine and US data built in.";
 
