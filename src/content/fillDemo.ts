@@ -1,0 +1,47 @@
+export const demoFields = [
+  { label: "First name", dot: "bg-type-person", barWidth: "40%" },
+  { label: "Last name", dot: "bg-type-person", barWidth: "46%" },
+  { label: "Email address", dot: "bg-type-contact", barWidth: "82%" },
+  { label: "Mobile no.", dot: "bg-type-contact", barWidth: "56%" },
+  { label: "Birthday", dot: "bg-type-date", barWidth: "36%" },
+  { label: "Address", dot: "bg-type-address", barWidth: "60%" },
+  { label: "City", dot: "bg-type-address", barWidth: "40%" },
+  { label: "Province or state", dot: "bg-type-address", barWidth: "48%" },
+  { label: "ZIP code", dot: "bg-type-address", barWidth: "20%" },
+];
+
+export const demoPeople = [
+  [
+    "Maricel",
+    "Dela Cruz",
+    "maricel.delacruz42@example.com",
+    "+63 917 482 1093",
+    "18/03/1994",
+    "Brgy. San Antonio",
+    "Pasig City",
+    "Metro Manila",
+    "1605",
+  ],
+  [
+    "Hannah",
+    "Whitfield",
+    "hannah.whitfield7@example.net",
+    "(415) 555-0142",
+    "07/22/1988",
+    "2140 Alder Street",
+    "Oakland",
+    "California",
+    "94607",
+  ],
+  [
+    "Rowell",
+    "Capistrano",
+    "rowell.capistrano42@example.org",
+    "+63 993 731 1744",
+    "02/11/1990",
+    "Brgy. Poblacion",
+    "Bugasong",
+    "Antique",
+    "5704",
+  ],
+];
