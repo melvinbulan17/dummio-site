@@ -30,6 +30,16 @@ test("never scrolls sideways", async ({ page }) => {
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
+test("keeps the extension's privacy policy on the site", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "Read its privacy policy" }).click();
+  await expect(page).toHaveURL(/\/privacy#extension$/);
+  await expect(
+    page.getByRole("heading", { name: "What it stores" }),
+  ).toBeVisible();
+  await expect(page.locator('a[href*="PRIVACY.md"]')).toHaveCount(0);
+});
+
 test("the coffee link jumps to the support section", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "Buy me a coffee" }).first().click();
