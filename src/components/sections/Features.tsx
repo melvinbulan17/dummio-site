@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
+import { RightClickDemo } from "@/components/sections/RightClickDemo";
 import { formatExamples } from "@/content/site";
 
 type FeatureProps = {
@@ -109,6 +110,14 @@ export function Features() {
             alt="Dummio settings with fill options and a site preset"
             className={`${screenshotStyles} md:w-140`}
           />
+        </Feature>
+
+        <Feature
+          flip
+          title="Fill just one field"
+          lead={`Don't need the whole form? Right-click a field and choose "Fill this field". Dummio fills that one and leaves the rest alone.`}
+        >
+          <RightClickDemo />
         </Feature>
       </div>
     </section>
