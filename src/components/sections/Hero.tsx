@@ -11,6 +11,7 @@ export function Hero() {
           <p className="m-0 max-w-160 type-lead text-on-yellow-muted">
             Dummio reads each field on a form and fills it with believable data
             in the shape it expects. Click once, or press Alt+Shift+F.
+            Right-click a field to fill just that one.
           </p>
           <DownloadButtons />
           <p className="m-0 max-w-130 text-[13px] leading-[18px] text-on-yellow-muted">
