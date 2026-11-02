@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <>
       <header>
-        <Nav installVariant="primary" />
+        <Nav />
       </header>
       <main
         id="main"

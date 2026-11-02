@@ -1,8 +1,8 @@
 import { Coffee } from "lucide-react";
 import Link from "next/link";
 
-import { buttonStyles, type ButtonVariant } from "@/components/ui/buttonStyles";
-import { pageLinks } from "@/content/site";
+import { TrackedLink } from "@/components/ui/TrackedLink";
+import { links, pageLinks } from "@/content/site";
 
 import { Wordmark } from "./Wordmark";
 
@@ -10,10 +10,10 @@ const linkStyles =
   "text-sm leading-5 font-medium no-underline hover:underline hover:underline-offset-3";
 
 type NavProps = {
-  installVariant: ButtonVariant;
+  onHome?: boolean;
 };
 
-export function Nav({ installVariant }: NavProps) {
+export function Nav({ onHome = false }: NavProps) {
   return (
     <nav
       aria-label="Main"
@@ -21,21 +21,27 @@ export function Nav({ installVariant }: NavProps) {
     >
       <Wordmark />
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-        {pageLinks.map((link) => (
-          <Link key={link.href} href={link.href} className={linkStyles}>
-            {link.label}
-          </Link>
-        ))}
-        <Link
-          href="/#support"
+        {pageLinks.map((link) =>
+          onHome ? (
+            <a key={link.id} href={`#${link.id}`} className={linkStyles}>
+              {link.label}
+            </a>
+          ) : (
+            <Link key={link.id} href={`/#${link.id}`} className={linkStyles}>
+              {link.label}
+            </Link>
+          ),
+        )}
+        <TrackedLink
+          href={links.support}
+          target="_blank"
+          rel="noopener"
+          event={{ name: "support_click" }}
           className={`${linkStyles} inline-flex items-center gap-1.5`}
         >
           <Coffee aria-hidden="true" className="size-4" strokeWidth={1.75} />
           Buy me a coffee
-        </Link>
-        <Link href="/#install" className={buttonStyles(installVariant)}>
-          Install
-        </Link>
+        </TrackedLink>
       </div>
     </nav>
   );

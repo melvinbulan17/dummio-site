@@ -17,9 +17,9 @@ export const links = {
 };
 
 export const pageLinks = [
-  { href: "/#how", label: "How it works" },
-  { href: "/#privacy", label: "Privacy" },
-  { href: "/#faq", label: "FAQ" },
+  { id: "how", label: "How it works" },
+  { id: "privacy", label: "Privacy" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export const formatExamples = [

@@ -18,7 +18,7 @@ export default function PrivacyPage() {
   return (
     <>
       <header>
-        <Nav installVariant="primary" />
+        <Nav />
       </header>
       <main
         id="main"

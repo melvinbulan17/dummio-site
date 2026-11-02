@@ -31,7 +31,7 @@ export default function Home() {
         }}
       />
       <header className="bg-dummy-yellow text-ink-on-accent [&_:focus-visible]:outline-ink-on-accent">
-        <Nav installVariant="ink" />
+        <Nav onHome />
       </header>
       <main id="main">
         <Hero />
