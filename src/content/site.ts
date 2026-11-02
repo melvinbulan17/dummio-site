@@ -10,7 +10,6 @@ export const links = {
   chromeZip: `${repo}/releases/latest/download/dummio-chrome.zip`,
   firefoxZip: `${repo}/releases/latest/download/dummio-firefox.zip`,
   releases: `${repo}/releases/latest`,
-  extensionPrivacy: `${repo}/blob/main/PRIVACY.md`,
   reportProblem: `${repo}/issues/new/choose`,
   credits: `${repo}#credits`,
   support: "https://ko-fi.com/mbulandev",

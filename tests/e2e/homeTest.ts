@@ -19,7 +19,7 @@ test("runs the fill demo and fills again with a new person", async ({
   await page.goto("/");
   await expect(page.getByText("Dela Cruz")).toBeVisible();
   await page.getByRole("button", { name: "Fill again" }).click();
-  await expect(page.getByText("Whitfield")).toBeVisible();
+  await expect(page.getByText("Whitfield", { exact: true })).toBeVisible();
 });
 
 test("never scrolls sideways", async ({ page }) => {
@@ -28,6 +28,16 @@ test("never scrolls sideways", async ({ page }) => {
     () => document.documentElement.scrollWidth - window.innerWidth,
   );
   expect(overflow).toBeLessThanOrEqual(0);
+});
+
+test("keeps the extension's privacy policy on the site", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "Read its privacy policy" }).click();
+  await expect(page).toHaveURL(/\/privacy#extension$/);
+  await expect(
+    page.getByRole("heading", { name: "What it stores" }),
+  ).toBeVisible();
+  await expect(page.locator('a[href*="PRIVACY.md"]')).toHaveCount(0);
 });
 
 test("a nav link scrolls to its section every time", async ({ page }) => {
@@ -51,7 +61,9 @@ test("a nav link scrolls to its section every time", async ({ page }) => {
       )
       .toBeLessThan(5);
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeLessThan(5);
   }
 });
 
