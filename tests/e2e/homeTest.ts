@@ -124,9 +124,20 @@ test("has search and sharing tags", async ({ page }) => {
     /Chrome and Firefox/,
   );
   await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
-  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
-    1,
+  const schemas = JSON.parse(
+    (await page.locator('script[type="application/ld+json"]').textContent()) ??
+      "[]",
   );
+  expect(schemas[0]).toMatchObject({ "@type": "WebSite", name: "Dummio" });
+  expect(schemas[1]).toMatchObject({ "@type": "SoftwareApplication" });
+});
+
+test("serves the site icon", async ({ page, request }) => {
+  await page.goto("/");
+  const icon = await page.locator('link[rel="icon"]').getAttribute("href");
+  const response = await request.get(icon ?? "");
+  expect(response.status()).toBe(200);
+  expect(response.headers()["content-type"]).toBe("image/png");
 });
 
 test("shows a helpful page for a missing address", async ({ page }) => {
