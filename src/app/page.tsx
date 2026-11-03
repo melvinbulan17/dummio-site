@@ -8,6 +8,13 @@ import { Support } from "@/components/sections/Support";
 import { links, siteDescription, siteName } from "@/content/site";
 import { siteUrl } from "@/lib/site";
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: `${siteUrl}/`,
+};
+
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -27,7 +34,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(softwareSchema).replace(/</g, "\\u003c"),
+          __html: JSON.stringify([websiteSchema, softwareSchema]).replace(
+            /</g,
+            "\\u003c",
+          ),
         }}
       />
       <header className="bg-dummy-yellow text-ink-on-accent [&_:focus-visible]:outline-ink-on-accent">
