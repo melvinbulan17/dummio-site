@@ -1,15 +1,35 @@
-# dummio-site
+<p align="center">
+  <a href="https://dummio.vercel.app/"><img src="src/app/icon.png" width="96" height="96" alt="Dummio icon"></a>
+</p>
 
-Landing page for [Dummio](https://github.com/melvinbulan17/dummio), a browser extension that fills any web form with realistic test data.
+<h1 align="center">Dummio site</h1>
 
-Built with Next.js (App Router), React, TypeScript and Tailwind CSS v4. Hosted on Vercel.
+<p align="center">
+  <b>The landing page for <a href="https://github.com/melvinbulan17/dummio">Dummio</a>.</b><br>
+  Shows what the extension does with a live fill demo, and gets people to the download.
+</p>
 
-## Requirements
+<p align="center">
+  <a href="https://dummio.vercel.app/"><img src="https://img.shields.io/badge/live-dummio.vercel.app-ffc21a?labelColor=17171a" alt="Live at dummio.vercel.app"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/melvinbulan17/dummio-site?color=ffc21a&labelColor=17171a" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/Next.js-16-ffc21a?labelColor=17171a" alt="Next.js 16">
+</p>
 
-- Node.js 26 (see `.nvmrc`)
-- pnpm 12
+<p align="center">
+  <a href="https://dummio.vercel.app/"><img src="docs/images/home.png" width="720" alt="The Dummio home page, with the headline Stop typing test data and a sample of filled form fields"></a>
+</p>
 
-## Getting started
+## What's here
+
+- A home page with a live fill demo, which is still complete without JavaScript.
+- A privacy policy page, plus a sitemap and search metadata.
+- Google Analytics, which only loads after a visitor chooses Allow.
+
+The site is separate from the extension, so changes here can't touch extension builds. Every merge to `main` deploys to Vercel.
+
+## Development
+
+Requires Node 26 and pnpm 12.
 
 ```bash
 pnpm install
@@ -17,58 +37,9 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-The site runs at http://localhost:3000.
+The site runs at http://localhost:3000. Run the tests with `pnpm test` and `pnpm test:e2e`.
 
-## Scripts
-
-| Script           | What it does                      |
-| ---------------- | --------------------------------- |
-| `pnpm dev`       | Start the dev server              |
-| `pnpm build`     | Build for production              |
-| `pnpm start`     | Serve the production build        |
-| `pnpm lint`      | Run ESLint                        |
-| `pnpm typecheck` | Type-check with TypeScript        |
-| `pnpm format`    | Format all files with Prettier    |
-| `pnpm test`      | Run unit tests (Vitest)           |
-| `pnpm test:e2e`  | Run end-to-end tests (Playwright) |
-
-A pre-commit hook runs ESLint and Prettier on staged files.
-
-## Environment variables
-
-| Variable                   | What it's for                                     |
-| -------------------------- | ------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`     | The live address, used for links, sitemap and SEO |
-| `NEXT_PUBLIC_GA_ID`        | Google Analytics measurement ID (`G-...`)         |
-| `GOOGLE_SITE_VERIFICATION` | Search Console verification code                  |
-
-Leave `NEXT_PUBLIC_GA_ID` empty and neither the analytics nor the consent notice load. On Vercel, the site address falls back to the production domain when `NEXT_PUBLIC_SITE_URL` isn't set.
-
-## Analytics
-
-Google Analytics only loads after a visitor chooses Allow. The site reports the pages people view, plus three events: `download_click` (with the browser), `support_click` and `github_click`.
-
-## Project structure
-
-```
-src/
-  app/                 Routes, metadata, sitemap, robots and design tokens
-  components/
-    layout/            Nav, footer, analytics and the consent notice
-    sections/          Page sections, including the live fill demo
-    ui/                Buttons and tracked links
-  content/             Site copy and demo data
-  lib/                 Analytics, consent and site address helpers
-public/
-  images/              Real screenshots of the extension
-tests/
-  e2e/                 Playwright tests
-  unit/                Vitest tests, mirroring the src/ folders
-```
-
-## Updating for the stores
-
-The download buttons point at the latest GitHub release. Once a store listing is live, change that browser's link in `src/content/site.ts`, relabel its button in `src/components/ui/DownloadButtons.tsx` to "Add to Chrome" or "Add to Firefox", and update the hero's install note.
+Built with Next.js, React, TypeScript, Tailwind CSS v4, Vitest and Playwright.
 
 ## License
 
