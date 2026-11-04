@@ -7,18 +7,22 @@ export function DownloadButtons() {
   return (
     <div className="flex flex-wrap gap-3">
       <TrackedLink
-        href={links.chromeZip}
+        href={links.chromeStore}
+        target="_blank"
+        rel="noopener"
         event={{ name: "download_click", browser: "chrome" }}
         className={buttonStyles("ink", "lg")}
       >
-        Download for Chrome
+        Add to Chrome
       </TrackedLink>
       <TrackedLink
-        href={links.firefoxZip}
+        href={links.firefoxStore}
+        target="_blank"
+        rel="noopener"
         event={{ name: "download_click", browser: "firefox" }}
         className={buttonStyles("outline", "lg")}
       >
-        Download for Firefox
+        Add to Firefox
       </TrackedLink>
     </div>
   );
