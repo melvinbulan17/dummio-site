@@ -7,9 +7,9 @@ export const siteDescription =
 
 export const links = {
   repo,
-  chromeZip: `${repo}/releases/latest/download/dummio-chrome.zip`,
-  firefoxZip: `${repo}/releases/latest/download/dummio-firefox.zip`,
-  releases: `${repo}/releases/latest`,
+  chromeStore:
+    "https://chromewebstore.google.com/detail/dummio/ajpljdboafipblchifcpgnmjhdpilopb",
+  firefoxStore: "https://addons.mozilla.org/en-US/firefox/addon/dummio/",
   reportProblem: `${repo}/issues/new/choose`,
   credits: `${repo}#credits`,
   support: "https://ko-fi.com/mbulandev",

@@ -1,16 +1,16 @@
 import { expect, test } from "@playwright/test";
 
-test("shows the headline and links the real downloads", async ({ page }) => {
+test("shows the headline and links the store listings", async ({ page }) => {
   await page.goto("/");
   await expect(
     page.getByRole("heading", { level: 1, name: "Stop typing test data." }),
   ).toBeVisible();
   await expect(
-    page.getByRole("link", { name: "Download for Chrome" }).first(),
-  ).toHaveAttribute("href", /releases\/latest\/download\/dummio-chrome\.zip$/);
+    page.getByRole("link", { name: "Add to Chrome" }).first(),
+  ).toHaveAttribute("href", /chromewebstore\.google\.com\/detail\/dummio\//);
   await expect(
-    page.getByRole("link", { name: "Download for Firefox" }).first(),
-  ).toHaveAttribute("href", /releases\/latest\/download\/dummio-firefox\.zip$/);
+    page.getByRole("link", { name: "Add to Firefox" }).first(),
+  ).toHaveAttribute("href", /addons\.mozilla\.org\/.*\/addon\/dummio\/$/);
 });
 
 test("runs the fill demo and fills again with a new person", async ({

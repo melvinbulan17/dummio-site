@@ -24,7 +24,7 @@ const softwareSchema = {
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Chrome, Firefox",
   license: "https://opensource.org/license/mit",
-  downloadUrl: links.releases,
+  downloadUrl: links.chromeStore,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 };
 
